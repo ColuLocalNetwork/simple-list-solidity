@@ -1,0 +1,24 @@
+{
+  "name": "simple-list-solidity",
+  "version": "0.0.1",
+  "main": "truffle.js",
+  "scripts": {
+    "compile": "truffle compile",
+    "deploy-dev": "truffle migrate --network development",
+    "deploy-ropsten": "truffle migrate --network ropsten",
+    "deploy-fuse": "truffle migrate --network fuse",
+    "deploy-mainnet": "truffle migrate --network mainnet",
+    "get-all-dev": "NETWORK=development node scripts/get-all.js",
+    "get-all-ropsten": "NETWORK=ropsten node scripts/get-all.js",
+    "get-all-fuse": "NETWORK=fuse node scripts/get-all.js",
+    "get-all-mainnet": "NETWORK=mainnet node scripts/get-all.js"
+  },
+  "author": "LiorRabin",
+  "license": "MIT",
+  "dependencies": {
+    "openzeppelin-solidity": "^2.0.0",
+    "truffle-contract": "^3.0.6",
+    "truffle-hdwallet-provider": "^0.0.6"
+  },
+  "devDependencies": {}
+}
