@@ -1,5 +1,5 @@
-var SimpleList = artifacts.require("./SimpleList.sol");
+var SimpleListFactory = artifacts.require("./SimpleListFactory.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(SimpleList);
+  deployer.deploy(SimpleListFactory);
 }

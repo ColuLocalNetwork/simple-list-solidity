@@ -6,8 +6,12 @@ contract SimpleList is Ownable {
 
   mapping (address => uint) public admins;
 
-  constructor() Ownable() public {
-    admins[msg.sender] = 1;
+  constructor(address admin) Ownable() public {
+    if (admin != address(0)) {
+      admins[admin] = 1;
+    } else {
+      admins[msg.sender] = 1;
+    }
   }
 
   mapping(string => uint) private _entityMap;
