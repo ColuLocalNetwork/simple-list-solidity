@@ -5,7 +5,7 @@ import './SimpleList.sol';
 contract SimpleListFactory {
   mapping (address => address) public tokenToListMap;
 
-  event SimpleListCreated(address indexed list, address admin);
+  event SimpleListCreated(address list, address admin);
 
   function createSimpleList(address token) public returns (address) {
     require(token != address(0));
