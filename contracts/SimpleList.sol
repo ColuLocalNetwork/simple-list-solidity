@@ -6,12 +6,22 @@ contract SimpleList is Ownable {
 
   mapping (address => uint) public admins;
 
-  constructor() Ownable() public {
-    admins[msg.sender] = 1;
+  constructor(address admin) Ownable() public {
+    if (admin != address(0)) {
+      admins[admin] = 1;
+    } else {
+      admins[msg.sender] = 1;
+    }
   }
 
   mapping(string => uint) private _entityMap;
   string[] private _entityList;
+
+  event EntityAdded(string hash);
+  event EntityDeleted(string hash);
+  event AdminAdded(address _address);
+  event AdminRemoved(address _address);
+
 
   modifier onlyAdmin() {
     require (admins[msg.sender] == 1);
@@ -24,6 +34,7 @@ contract SimpleList is Ownable {
 
   function addEntity(string hash) public onlyAdmin returns(bool) {
     _entityMap[hash] = _entityList.push(hash) - 1;
+    emit EntityAdded(hash);
     return true;
   }
 
@@ -37,18 +48,21 @@ contract SimpleList is Ownable {
     _entityList[rowToDelete] = keyToMove;
     _entityMap[keyToMove] = rowToDelete;
     _entityList.length--;
+    emit EntityDeleted(hash);
     return true;
   }
 
   function addAdmin(address _address) public onlyOwner returns(bool) {
     require(_address != address(0));
     admins[_address] = 1;
+    emit AdminAdded(_address);
     return true;
   }
 
   function removeAdmin(address _address) public onlyOwner returns(bool) {
     require(_address != address(0));
     delete admins[_address];
+    emit AdminRemoved(_address);
     return true;
   }
 
