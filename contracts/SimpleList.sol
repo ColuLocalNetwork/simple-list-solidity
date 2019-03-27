@@ -19,6 +19,7 @@ contract SimpleList is Ownable {
 
   event EntityAdded(string hash);
   event EntityDeleted(string hash);
+  event EntityReplaced(string oldHash, string newHash);
   event AdminAdded(address _address);
   event AdminRemoved(address _address);
 
@@ -28,7 +29,7 @@ contract SimpleList is Ownable {
     _;
   }
 
-  function count() public constant returns(uint) {
+  function count() public view returns(uint) {
     return _entityList.length;
   }
 
@@ -49,6 +50,15 @@ contract SimpleList is Ownable {
     _entityMap[keyToMove] = rowToDelete;
     _entityList.length--;
     emit EntityDeleted(hash);
+    return true;
+  }
+
+  function replaceEntity(string oldHash, string newHash) public onlyOwner returns(bool) {
+    uint rowToEdit = _entityMap[oldHash];
+    _entityList[rowToEdit] = newHash;
+    _entityMap[newHash] = rowToEdit;
+    delete _entityMap[oldHash];
+    emit EntityReplaced(oldHash, newHash);
     return true;
   }
 
