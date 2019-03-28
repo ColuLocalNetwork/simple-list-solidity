@@ -4,6 +4,7 @@
   "main": "truffle.js",
   "scripts": {
     "compile": "truffle compile",
+    "test": "truffle test",
     "deploy-dev": "truffle migrate --network development",
     "deploy-ropsten": "truffle migrate --network ropsten",
     "deploy-fuse": "truffle migrate --network fuse",
@@ -17,6 +18,8 @@
   "license": "MIT",
   "dependencies": {
     "openzeppelin-solidity": "^2.0.0",
+    "truffle": "^5.0.9",
+    "truffle-assertions": "^0.8.2",
     "truffle-contract": "^3.0.6",
     "truffle-hdwallet-provider": "^0.0.6"
   },
