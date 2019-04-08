@@ -26,12 +26,6 @@ module.exports = {
       gas: 6721975,
       gasPrice: 1000000000,
     },
-    development: {
-      provider: () => new HDWalletProvider(mnemonic, 'http://localhost:8545'),
-      network_id: '*',
-      gas: 6000000,
-      gasPrice: 25000000000,
-    },
     // config for solidity-coverage
     coverage: {
       host: 'localhost',
@@ -40,5 +34,10 @@ module.exports = {
       gas: 0xfffffffffff, // <-- Use this high gas value
       gasPrice: 0x01, // <-- Use this low gas price
     }
+  },
+  compilers: {
+      solc: {
+          version: "^0.4.24",  // ex:  "0.4.20". (Default: Truffle's installed solc)
+      }
   }
 }
